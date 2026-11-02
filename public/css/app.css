@@ -1,0 +1,61 @@
+:root {
+    --app-primaria: #1f4e79;
+    --app-primaria-escura: #173a5a;
+}
+
+body {
+    background-color: #f4f6f9;
+    font-size: 1rem;
+}
+
+.app-navbar {
+    background-color: var(--app-primaria);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--app-primaria);
+    --bs-btn-border-color: var(--app-primaria);
+    --bs-btn-hover-bg: var(--app-primaria-escura);
+    --bs-btn-hover-border-color: var(--app-primaria-escura);
+    --bs-btn-active-bg: var(--app-primaria-escura);
+    --bs-btn-active-border-color: var(--app-primaria-escura);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--app-primaria);
+    --bs-btn-border-color: var(--app-primaria);
+    --bs-btn-hover-bg: var(--app-primaria);
+    --bs-btn-hover-border-color: var(--app-primaria);
+    --bs-btn-active-bg: var(--app-primaria);
+    --bs-btn-active-border-color: var(--app-primaria);
+}
+
+.app-card {
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.app-card:hover {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+}
+
+.app-form {
+    max-width: 40rem;
+}
+
+.app-grupo-autor {
+    margin-bottom: 2rem;
+}
+
+.app-tabela-relatorio {
+    min-width: 44rem;
+    table-layout: fixed;
+}
+
+.app-tabela-relatorio .col-titulo { width: 25%; }
+.app-tabela-relatorio .col-assuntos { width: 26%; }
+.app-tabela-relatorio .col-editora { width: 19%; }
+.app-tabela-relatorio .col-edicao { width: 8%; }
+.app-tabela-relatorio .col-ano { width: 7%; }
+.app-tabela-relatorio .col-valor { width: 15%; }

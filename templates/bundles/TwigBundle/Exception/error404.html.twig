@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Página não encontrada | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1 class="h3">Página não encontrada</h1>
+    <p>O endereço acessado não existe ou o registro foi removido.</p>
+    <a class="btn btn-primary" href="{{ path('app_home') }}">Voltar ao início</a>
+{% endblock %}

@@ -1,0 +1,6 @@
+# Tokens CSRF guardados na sessão, para formulários e botões de exclusão.
+framework:
+    form:
+        csrf_protection: true
+
+    csrf_protection: true

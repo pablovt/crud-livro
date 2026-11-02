@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="mb-4">Cadastro de Livros</h1>
+    <div class="row g-3">
+        {% for item in [
+            {rota: 'app_livro_index', titulo: 'Livros', texto: 'Títulos, valores, autores e assuntos.'},
+            {rota: 'app_autor_index', titulo: 'Autores', texto: 'Autores disponíveis para os livros.'},
+            {rota: 'app_assunto_index', titulo: 'Assuntos', texto: 'Assuntos usados na classificação.'},
+            {rota: 'app_relatorio_livros_por_autor', titulo: 'Relatório', texto: 'Livros agrupados por autor, em tela e PDF.'},
+        ] %}
+            <div class="col-sm-6 col-lg-3">
+                <a class="card h-100 app-card" href="{{ path(item.rota) }}">
+                    <div class="card-body">
+                        <h2 class="h5 card-title">{{ item.titulo }}</h2>
+                        <p class="card-text">{{ item.texto }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Autores | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Autores</h1>
+        <a class="btn btn-primary" href="{{ path('app_autor_novo') }}">Novo autor</a>
+    </div>
+
+    {% if autores is empty %}
+        <p class="text-muted">Nenhum registro cadastrado.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for autor in autores %}
+                    <tr>
+                        <td>{{ autor.id }}</td>
+                        <td>{{ autor.nome }}</td>
+                        <td class="text-end text-nowrap">
+                            <a class="btn btn-outline-primary btn-sm" href="{{ path('app_autor_editar', {id: autor.id}) }}">Editar</a>
+                            {% include '_partials/excluir.html.twig' with {
+                                action: path('app_autor_excluir', {id: autor.id}),
+                                token_id: 'excluir_autor' ~ autor.id,
+                                nome: autor.nome,
+                            } only %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

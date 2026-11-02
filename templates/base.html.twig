@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Cadastro de Livros{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark app-navbar mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('app_home') }}">Cadastro de Livros</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_livro_index') }}">Livros</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_autor_index') }}">Autores</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_assunto_index') }}">Assuntos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_relatorio_livros_por_autor') }}">Relatório</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="container pb-5">
+    {% for tipo, mensagens in app.flashes %}
+        {% for mensagem in mensagens %}
+            <div class="alert alert-{{ tipo }}" role="alert">{{ mensagem }}</div>
+        {% endfor %}
+    {% endfor %}
+    {% block body %}{% endblock %}
+</main>
+<script src="{{ asset('vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>

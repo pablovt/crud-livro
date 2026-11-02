@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livros por autor | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Livros por autor</h1>
+        {% if grupos is not empty %}
+            <a class="btn btn-primary" href="{{ path('app_relatorio_livros_por_autor_pdf') }}">Baixar PDF</a>
+        {% endif %}
+    </div>
+
+    {% for grupo in grupos %}
+        <section class="app-grupo-autor">
+            <h2 class="h5">{{ grupo.autor }}</h2>
+            {% if grupo.livros is empty %}
+                <p class="text-muted">Nenhum livro vinculado.</p>
+            {% else %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped align-middle bg-white app-tabela-relatorio">
+                        <thead>
+                        <tr>
+                            <th class="col-titulo">Título</th>
+                            <th class="col-assuntos">Assuntos</th>
+                            <th class="col-editora">Editora</th>
+                            <th class="text-end col-edicao">Edição</th>
+                            <th class="text-end col-ano">Ano</th>
+                            <th class="text-end col-valor">Valor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for livro in grupo.livros %}
+                            <tr>
+                                <td>{{ livro.Titulo }}</td>
+                                <td>{{ livro.Assuntos }}</td>
+                                <td>{{ livro.Editora }}</td>
+                                <td class="text-end">{{ livro.Edicao }}ª</td>
+                                <td class="text-end">{{ livro.AnoPublicacao }}</td>
+                                <td class="text-end text-nowrap">{{ livro.Valor|format_currency('BRL') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr class="fw-semibold">
+                            <td colspan="5">{{ grupo.livros|length }} {{ grupo.livros|length == 1 ? 'livro' : 'livros' }}</td>
+                            <td class="text-end text-nowrap">{{ grupo.total|format_currency('BRL') }}</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            {% endif %}
+        </section>
+    {% else %}
+        <p class="text-muted">Nenhum autor cadastrado.</p>
+    {% endfor %}
+{% endblock %}

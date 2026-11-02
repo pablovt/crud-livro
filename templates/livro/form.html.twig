@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livros | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-3">{{ livro.id ? 'Editar' : 'Novo' }} livro</h1>
+    <div class="card app-form">
+        <div class="card-body">
+            {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-outline-secondary" href="{{ path('app_livro_index') }}">Cancelar</a>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

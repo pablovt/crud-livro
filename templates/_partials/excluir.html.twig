@@ -1,0 +1,5 @@
+<form method="post" action="{{ action }}" class="d-inline"
+      onsubmit="return confirm('Confirma a exclusão de {{ nome|e('js') }}?');">
+    <input type="hidden" name="_token" value="{{ csrf_token(token_id) }}">
+    <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
+</form>

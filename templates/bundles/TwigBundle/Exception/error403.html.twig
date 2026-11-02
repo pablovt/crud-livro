@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acesso negado | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1 class="h3">Acesso negado</h1>
+    <p>A operação não foi autorizada. Recarregue a página e tente novamente.</p>
+    <a class="btn btn-primary" href="{{ path('app_home') }}">Voltar ao início</a>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livros | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Livros</h1>
+        <a class="btn btn-primary" href="{{ path('app_livro_novo') }}">Novo livro</a>
+    </div>
+
+    {% if livros is empty %}
+        <p class="text-muted">Nenhum registro cadastrado.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Autores</th>
+                    <th>Assuntos</th>
+                    <th>Editora</th>
+                    <th class="text-end">Edição</th>
+                    <th class="text-end">Ano</th>
+                    <th class="text-end">Valor</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for livro in livros %}
+                    <tr>
+                        <td>{{ livro.titulo }}</td>
+                        <td>{{ livro.autores|map(a => a.nome)|join(', ') }}</td>
+                        <td>{{ livro.assuntos|map(s => s.descricao)|join(', ') }}</td>
+                        <td>{{ livro.editora }}</td>
+                        <td class="text-end">{{ livro.edicao }}ª</td>
+                        <td class="text-end">{{ livro.anoPublicacao }}</td>
+                        <td class="text-end text-nowrap">{{ livro.valor|format_currency('BRL') }}</td>
+                        <td class="text-end text-nowrap">
+                            <a class="btn btn-outline-primary btn-sm" href="{{ path('app_livro_editar', {id: livro.id}) }}">Editar</a>
+                            {% include '_partials/excluir.html.twig' with {
+                                action: path('app_livro_excluir', {id: livro.id}),
+                                token_id: 'excluir_livro' ~ livro.id,
+                                nome: livro.titulo,
+                            } only %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
